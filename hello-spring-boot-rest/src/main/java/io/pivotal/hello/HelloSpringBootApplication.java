@@ -17,14 +17,14 @@ public class HelloSpringBootApplication {
   }
 
   @Bean
-  CommandLineRunner loadDatabase(GreetingRepository gr) {
+  CommandLineRunner loadDatabase(GreetingRepository repository) {
     return args -> {
       logger.debug("loading database..");
-      gr.save(new Greeting(1, "Hello"));
-      gr.save(new Greeting(2, "Hola"));
-      gr.save(new Greeting(3, "Ohai"));
-      logger.debug("record count: {}", gr.count());
-      gr.findAll().forEach(x -> logger.debug(x.toString()));
+      repository.save(new Greeting(1, "Hello"));
+      repository.save(new Greeting(2, "Hola"));
+      repository.save(new Greeting(3, "Ohai"));
+      logger.debug("record count: {}", repository.count());
+      repository.findAll().forEach(x -> logger.debug(x.toString()));
     };
 
   }
